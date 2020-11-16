@@ -1,24 +1,68 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import { createMuiTheme } from '@material-ui/core/styles';
+import { ThemeProvider } from '@material-ui/styles';
+import Button from './components/Button'
+import TextField from './components/TextField'
+import Label from './components/Label'
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+
+const theme = createMuiTheme({
+  palette: {
+    primary: {
+      main: '#2096F3',
+    }
+  },
+  spacing: 8,
+  shape: {
+    borderRadius: 4
+  }
+});
 
 function App() {
+  const [chipData, setChipData] = React.useState([
+    { key: 0, label: 'Pedestrian' },
+    { key: 1, label: 'Truck' },
+    { key: 2, label: 'Tree' },
+    { key: 3, label: 'Hard break' },
+  ]);
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <ThemeProvider theme={theme}>
+        <h1>Components Preview</h1>
+        <Grid container direction="row" justify="flex-start" alignItems="flex-start">
+          <Grid item xs>
+            <h2>Buttons</h2>
+            <p>
+              <Button type="primary">Primary Button</Button>
+            </p>
+            <p>
+              <Button type="secondary">Secondary Button</Button>
+            </p>
+          </Grid>
+          <Grid item xs>
+            <h2>Text Fields</h2>
+            <p>
+              <TextField type="standard" helpText="Some helper text here" />
+            </p>
+            <p>
+              <TextField type="search" />
+            </p>
+          </Grid>
+          <Grid item xs>
+            <h2>Labels</h2>
+            <Paper component="ul">
+              {chipData.map((data) => {
+                return (
+                  <Label text={data.label} />
+                )
+              })}
+            </Paper>
+          </Grid>
+        </Grid>
+      </ThemeProvider>
     </div>
   );
 }
