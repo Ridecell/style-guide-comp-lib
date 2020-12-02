@@ -20,10 +20,10 @@ interface RCCompProps {
     componentProps?: Object
 }
 
-const RCComponent = ({ text, componentProps }: RCCompProps) => {
+const RCLabel = ({ text, componentProps }: RCCompProps) => {
     return (
         <RCLabeltWithStyles label={text} variant="outlined" onDelete={handleDelete} {...componentProps} />
     )
 }
 
-export default RCComponent;
+export default RCLabel;

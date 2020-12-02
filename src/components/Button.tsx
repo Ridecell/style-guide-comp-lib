@@ -2,7 +2,7 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
 
-const RCButtonWithStyles = withStyles({
+const ButtonWithStyles = withStyles({
     root: {
     },
     label: {
@@ -18,11 +18,11 @@ interface RCButtonProps {
 const RCButton = ({ type, children, componentProps }: RCButtonProps) => {
     if (type === "primary") {
         return (
-            <RCButtonWithStyles variant="contained" color="primary" {...componentProps}>{children}</RCButtonWithStyles>
+            <ButtonWithStyles variant="contained" color="primary" {...componentProps}>{children}</ButtonWithStyles>
         )
     } else {
         return (
-            <RCButtonWithStyles variant="outlined" color="primary" {...componentProps}>{children}</RCButtonWithStyles>
+            <ButtonWithStyles variant="outlined" color="primary" {...componentProps}>{children}</ButtonWithStyles>
         )
     }
 }
