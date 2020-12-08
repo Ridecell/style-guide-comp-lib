@@ -5,6 +5,7 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import Box from '@material-ui/core/Box';
 import ButtonBase from '@material-ui/core/ButtonBase';
+import Button from '@material-ui/core/Button';
 import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import MenuList from '@material-ui/core/MenuList';
@@ -66,13 +67,18 @@ const MenuWithStyles = withStyles((theme) => ({
 }))(Menu);
 
 const MenuItemWithStyles = withStyles((theme) => ({
+    root: {
+        height: 48
+    },
     gutters: {
         paddingRight: 0,
+        paddingLeft: 8,
     }
 }))(MenuItem);
 
 const PopoverWithStyles = withStyles((theme) => ({
     root: {
+        zIndex: 10000,
         pointerEvents: 'none',
     },
     paper: {
@@ -140,9 +146,9 @@ const RCMenu = ({ componentProps }: RCCompProps) => {
         console.log(menuItems);
     };
 
-    const handleMenuItemClick = (event: any) => {
+    const handleMenuItemClick = (route: string) => {
         // do stuff
-
+        console.log(route);
         // then close
         setAnchorEl(null);
     };
@@ -198,24 +204,6 @@ const RCMenu = ({ componentProps }: RCCompProps) => {
                         stuff here
                     </div> */}
                     <ClickAwayListener onClickAway={handleMenuClose}>
-                        {/* <PopoverWithStyles
-                            id="mouse-over-popover"
-                            open={Boolean(anchorEl)}
-                            anchorEl={anchorEl}
-                            onClose={handleMenuClose}
-                            disableRestoreFocus
-                        >
-                            <List component="nav">
-                                {
-                                    menuItems.map(
-                                        menuItem => menuItem.isHeading ?
-                                            <ListSubheader component="div" id="nested-list-subheader">{menuItem.name}</ListSubheader>
-                                            :
-                                            <ListItem button key={menuItem.id} onClick={handleMenuItemClick}><ListItemText primary={menuItem.name} /></ListItem>
-                                    )
-                                }
-                            </List>
-                        </PopoverWithStyles> */}
                         <PopoverWithStyles
                             id="mouse-over-popover"
                             open={Boolean(anchorEl)}
@@ -229,8 +217,8 @@ const RCMenu = ({ componentProps }: RCCompProps) => {
                                         menuItem => menuItem.isHeading ?
                                             <ListSubheader id="nested-list-subheader">{menuItem.name}</ListSubheader>
                                             :
-                                            <MenuItemWithStyles button key={menuItem.id} onClick={handleMenuItemClick}>
-                                                <Box flexGrow={1}>{menuItem.name}</Box>
+                                            <MenuItemWithStyles button key={menuItem.id}>
+                                                <Box flexGrow={1}><Button onClick={() => handleMenuItemClick("http://google.com")}>{menuItem.name}</Button></Box>
                                                 {Boolean(menuItem.addItemRoute) ? 
                                                     <IconButton color="primary"><AddCircle fontSize="small" /></IconButton>
                                                     // <Link component="button"><AddCircle fontSize="small" /></Link>
