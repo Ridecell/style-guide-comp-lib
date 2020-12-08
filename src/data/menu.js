@@ -1,9 +1,12 @@
+import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Dashboard from '@material-ui/icons/Dashboard';
 import DataUsage from '@material-ui/icons/DataUsage';
 import DriveEta from '@material-ui/icons/DriveEta';
 import People from '@material-ui/icons/People';
 import Chart from '@material-ui/icons/InsertChart';
 import Settings from '@material-ui/icons/Settings';
+
+const fontSize = "small";
 
 const menuItemsData = [
     {
@@ -21,13 +24,14 @@ const menuItemsData = [
                 isHeading: true,
                 id: "jobs",
                 name: "Jobs",
-                route: ""
+                route: "",
             },
             {
                 isHeading: false,
                 id: "activejobs",
                 name: "Active Jobs",
-                route: ""
+                route: "",
+                addItemRoute: "route here"
             },
             {
                 isHeading: false,
@@ -45,7 +49,8 @@ const menuItemsData = [
                 isHeading: false,
                 id: "activecheckouts",
                 name: "Active Checkouts",
-                route: ""
+                route: "",
+                addItemRoute: "route here"
             },
             {
                 isHeading: false,

@@ -33,14 +33,9 @@ function App() {
     { key: 3, label: 'Hard break' },
   ]);
 
-  const navItems = [
-    {
-      itemName: 'Dashboard',
-      items: [
-
-      ]
-    }
-  ]
+  const handleMenuClose = (event: any) => {
+    console.log("word");
+  };
 
   return (
     <div className="App">
@@ -81,6 +76,9 @@ function App() {
           <PoppoverTest />
         </Container>
       </ThemeProvider>
+      <ul onMouseOut={handleMenuClose}>
+        <li>hello</li>
+      </ul>
     </div>
   );
 }
