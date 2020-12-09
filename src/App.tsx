@@ -73,12 +73,8 @@ function App() {
               </Paper>
             </Grid>
           </Grid>
-          <PoppoverTest />
         </Container>
       </ThemeProvider>
-      <ul onMouseOut={handleMenuClose}>
-        <li>hello</li>
-      </ul>
     </div>
   );
 }
