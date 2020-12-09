@@ -238,7 +238,7 @@ const RCMenu = ({ componentProps }: RCCompProps) => {
                                         <MenuItemRC key={menuItem.id}>
                                             <LinkRC onClick={() => handleMenuItemClick("http://google.com")} underline="none">{menuItem.name}</LinkRC>
                                             {Boolean(menuItem.addItemRoute) ?
-                                                <IconButton color="primary" onClick={() => handleMenuItemAddClick("added item")}><AddCircle fontSize="small" /></IconButton>
+                                                <IconButton color="primary" aria-label="add new" onClick={() => handleMenuItemAddClick("added item")}><AddCircle fontSize="small" /></IconButton>
                                                 : <></>}
                                         </MenuItemRC>
                                 )
