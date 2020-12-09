@@ -25,6 +25,7 @@ import AddCircle from '@material-ui/icons/AddCircle';
 // data
 import MenuItemsData from '../data/menu';
 import { IconButton } from '@material-ui/core';
+import zIndex from '@material-ui/core/styles/zIndex';
 
 const TabsWithStyles = withStyles((theme) => ({
     root: {
@@ -77,8 +78,8 @@ const MenuItemWithStyles = withStyles((theme) => ({
 }))(MenuItem);
 
 const PopoverWithStyles = withStyles((theme) => ({
+    // pointer event css property solution for hover menus: https://stackoverflow.com/questions/54705254/how-to-keep-showing-the-popover-on-hovering-on-the-anchorel-and-popover-as-w
     root: {
-        zIndex: 10000,
         pointerEvents: 'none',
     },
     paper: {
@@ -86,6 +87,13 @@ const PopoverWithStyles = withStyles((theme) => ({
         minWidth: 240
     }
 }))(Popover);
+
+const MenuListWithStyles = withStyles((theme) => ({
+    // pointer event css property solution for hover menus: https://stackoverflow.com/questions/54705254/how-to-keep-showing-the-popover-on-hovering-on-the-anchorel-and-popover-as-w
+    root: {
+        pointerEvents: 'auto',
+    },
+}))(MenuList)
 
 const useStyles = makeStyles((theme) => ({
     logo: {
@@ -99,12 +107,6 @@ const useStyles = makeStyles((theme) => ({
     img: {
         maxHeight: 24
     },
-    hidden: {
-        visibility: "hidden"
-    },
-    visible: {
-        visibility: "visible"
-    }
 }));
 
 interface RCCompProps {
@@ -141,6 +143,7 @@ const RCMenu = ({ componentProps }: RCCompProps) => {
 
     const [menuItems, setMenuItems] = React.useState(Array<MenuItem>());
     const handleMenuOpen = (id: string, event: any) => {
+        setAnchorEl(null);
         setAnchorEl(event.currentTarget);
         setMenuItems(menuData.filter(tabItem => tabItem.id == id)[0].tabMenuItems!);
         console.log(menuItems);
@@ -183,76 +186,32 @@ const RCMenu = ({ componentProps }: RCCompProps) => {
                                 <TabWithStyles icon={tabItem.icon} label={tabItem.name} key={tabItem.id} />
                         )}
                     </TabsWithStyles>
-                    {/* <MenuWithStyles
-                        id="menu"
+                    <PopoverWithStyles
+                        id="mouse-over-popover"
+                        open={Boolean(anchorEl)}
                         anchorEl={anchorEl}
                         keepMounted
-                        open={Boolean(anchorEl)}
-                        // open={true}
                         onClose={handleMenuClose}
+                        // using onMouseLeave on the parent paper component to trigger close once the pointer leaves the menu
+                        PaperProps={{ onMouseLeave: handleMenuClose }}
+                        disableRestoreFocus
                     >
-                        {
-                            menuItems.map(
-                                menuItem => menuItem.isHeading ?
-                                    <ListSubheader id="nested-list-subheader">{menuItem.name}</ListSubheader>
-                                    :
-                                    <ListItem component="li" key={menuItem.id} button onClick={handleMenuItemClick}><ListItemText primary={menuItem.name} /></ListItem>
-                            )
-                        }
-                    </MenuWithStyles> */}
-                    {/* <div className={Boolean(anchorEl) ? classes.visible : classes.hidden} onMouseOut={handleMenuClose}>
-                        stuff here
-                    </div> */}
-                    <ClickAwayListener onClickAway={handleMenuClose}>
-                        <PopoverWithStyles
-                            id="mouse-over-popover"
-                            open={Boolean(anchorEl)}
-                            anchorEl={anchorEl}
-                            // onClose={handleMenuClose}
-                            disableRestoreFocus
-                        >
-                            <MenuList>
-                                {
-                                    menuItems.map(
-                                        menuItem => menuItem.isHeading ?
-                                            <ListSubheader id="nested-list-subheader">{menuItem.name}</ListSubheader>
-                                            :
-                                            <MenuItemWithStyles button key={menuItem.id}>
-                                                <Box flexGrow={1}><Button onClick={() => handleMenuItemClick("http://google.com")}>{menuItem.name}</Button></Box>
-                                                {Boolean(menuItem.addItemRoute) ? 
-                                                    <IconButton color="primary"><AddCircle fontSize="small" /></IconButton>
-                                                    // <Link component="button"><AddCircle fontSize="small" /></Link>
+                        <MenuListWithStyles>
+                            {
+                                menuItems.map(
+                                    menuItem => menuItem.isHeading ?
+                                        <ListSubheader id="nested-list-subheader">{menuItem.name}</ListSubheader>
+                                        :
+                                        <MenuItemWithStyles button key={menuItem.id}>
+                                            <Box flexGrow={1}><Button onClick={() => handleMenuItemClick("http://google.com")}>{menuItem.name}</Button></Box>
+                                            {Boolean(menuItem.addItemRoute) ?
+                                                <IconButton color="primary"><AddCircle fontSize="small" /></IconButton>
                                                 : <></>}
-                                            </MenuItemWithStyles>
-                                    )
-                                }
-                            </MenuList>
-                        </PopoverWithStyles>
-                        {/* <MenuWithStyles
-                            id="menu"
-                            anchorEl={anchorEl}
-                            keepMounted
-                            open={Boolean(anchorEl)}
-                            // open={true}
-                            onClose={handleMenuClose}
-                        >
-                            <MenuList>
-                                {
-                                    menuItems.map(
-                                        menuItem => menuItem.isHeading ?
-                                            <ListSubheader id="nested-list-subheader">{menuItem.name}</ListSubheader>
-                                            :
-                                            <MenuItem button key={menuItem.id} onClick={handleMenuItemClick}>
-                                                <Typography>{menuItem.name}</Typography>
-                                                <ListItemIcon>
-                                                    <AddCircle fontSize="small" />
-                                                </ListItemIcon>
-                                            </MenuItem>
-                                    )
-                                }
-                            </MenuList>
-                        </MenuWithStyles> */}
-                    </ClickAwayListener>
+                                        </MenuItemWithStyles>
+                                )
+                            }
+                        </MenuListWithStyles>
+                    </PopoverWithStyles>
                 </Box>
                 <Box>
                     <TabWithStyles icon={<Exit />} label="Logout" />

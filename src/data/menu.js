@@ -5,6 +5,7 @@ import DriveEta from '@material-ui/icons/DriveEta';
 import People from '@material-ui/icons/People';
 import Chart from '@material-ui/icons/InsertChart';
 import Settings from '@material-ui/icons/Settings';
+import AccountBalance from '@material-ui/icons/AccountBalance';
 
 const fontSize = "small";
 

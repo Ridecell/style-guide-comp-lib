@@ -12,6 +12,9 @@ const useStyles = makeStyles((theme) => ({
     paper: {
         padding: theme.spacing(1),
     },
+    typography: {
+        padding: theme.spacing(2),
+    },
 }))
 
 const PopoverTest = () => {
@@ -26,37 +29,37 @@ const PopoverTest = () => {
         setAnchorEl(null)
     }
 
-    const open = Boolean(anchorEl)
+    const open = Boolean(anchorEl);
+    const id = open ? 'simple-popover' : undefined;
 
     return (
         <>
             <div>
-                <Button
-                    onMouseEnter={handlePopoverOpen}
-                    onMouseLeave={handlePopoverClose}
-                >
-                    Hover with a Popover.
+                <Button aria-describedby={id} variant="contained" color="primary" onMouseEnter={handlePopoverOpen}>
+                    Open Popover
+                </Button>
+                <Button aria-describedby={id} variant="contained" color="primary" onMouseEnter={handlePopoverOpen}>
+                    Open Second Popover
                 </Button>
                 <Popover
-                    id="mouse-over-popover"
-                    className={classes.popover}
-                    // classes={{
-                    //     paper: classes.paper,
-                    // }}
+                    id={id}
                     open={open}
                     anchorEl={anchorEl}
-                    // anchorOrigin={{
-                    //     vertical: 'bottom',
-                    //     horizontal: 'left',
-                    // }}
-                    // transformOrigin={{
-                    //     vertical: 'top',
-                    //     horizontal: 'left',
-                    // }}
                     onClose={handlePopoverClose}
-                    disableRestoreFocus
+                    anchorOrigin={{
+                        vertical: 'bottom',
+                        horizontal: 'center',
+                    }}
+                    transformOrigin={{
+                        vertical: 'top',
+                        horizontal: 'center',
+                    }}
                 >
-                    <Typography>I use Popover.</Typography>
+                    <Typography className={classes.typography}>The content of the Popover.</Typography>
+                    <Button>This is a button</Button>
+                    <Button>This is a button</Button>
+                    <Button>This is a button</Button>
+                    <Button>This is a button</Button>
                 </Popover>
             </div>
         </>
