@@ -85,8 +85,20 @@ const MenuListRC = withStyles((theme) => ({
     // pointer event css property solution for hover menus: https://stackoverflow.com/questions/54705254/how-to-keep-showing-the-popover-on-hovering-on-the-anchorel-and-popover-as-w
     root: {
         pointerEvents: 'auto',
+        marginBottom: 8,
     },
 }))(MenuList)
+
+const ListSubheaderRC = withStyles((theme) => ({
+    root: {
+        color: theme.palette.text.primary,
+        fontWeight: theme.typography.fontWeightBold,
+        fontSize: theme.typography.subtitle1.fontSize,
+        lineHeight: theme.typography.subtitle1.lineHeight,
+        marginTop: 16,
+        marginBottom: 4,
+    }
+}))(ListSubheader);
 
 const MenuItemRC = withStyles((theme) => ({
     root: {
@@ -221,7 +233,7 @@ const RCMenu = ({ componentProps }: RCCompProps) => {
                             {
                                 menuItems.map(
                                     menuItem => menuItem.isHeading ?
-                                        <ListSubheader id="nested-list-subheader">{menuItem.name}</ListSubheader>
+                                        <ListSubheaderRC id="nested-list-subheader">{menuItem.name}</ListSubheaderRC>
                                         :
                                         <MenuItemRC key={menuItem.id}>
                                             <LinkRC onClick={() => handleMenuItemClick("http://google.com")} underline="none">{menuItem.name}</LinkRC>
