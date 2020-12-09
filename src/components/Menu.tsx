@@ -27,7 +27,7 @@ import MenuItemsData from '../data/menu';
 import { IconButton } from '@material-ui/core';
 import zIndex from '@material-ui/core/styles/zIndex';
 
-const TabsWithStyles = withStyles((theme) => ({
+const TabsRC = withStyles((theme) => ({
     root: {
     },
     indicator: {
@@ -35,13 +35,16 @@ const TabsWithStyles = withStyles((theme) => ({
     },
 }))(Tabs);
 
-const TabWithStyles = withStyles((theme) => ({
+const TabRC = withStyles((theme) => ({
     root: {
         fontWeight: theme.typography.fontWeightRegular,
         fontSize: 12,
         textTransform: 'capitalize',
         lineHeight: .8,
-        minWidth: 104
+        minWidth: 104,
+        '&:hover': {
+            color: theme.palette.text.primary,
+        },
     },
     textColorPrimary: {
     },
@@ -57,27 +60,7 @@ const TabWithStyles = withStyles((theme) => ({
     }
 }))(Tab);
 
-const MenuWithStyles = withStyles((theme) => ({
-    root: {
-        pointerEvents: 'none',
-    },
-    paper: {
-        marginTop: 60,
-        minWidth: 240
-    }
-}))(Menu);
-
-const MenuItemWithStyles = withStyles((theme) => ({
-    root: {
-        height: 48
-    },
-    gutters: {
-        paddingRight: 0,
-        paddingLeft: 8,
-    }
-}))(MenuItem);
-
-const PopoverWithStyles = withStyles((theme) => ({
+const PopoverRC = withStyles((theme) => ({
     // pointer event css property solution for hover menus: https://stackoverflow.com/questions/54705254/how-to-keep-showing-the-popover-on-hovering-on-the-anchorel-and-popover-as-w
     root: {
         pointerEvents: 'none',
@@ -88,12 +71,43 @@ const PopoverWithStyles = withStyles((theme) => ({
     }
 }))(Popover);
 
-const MenuListWithStyles = withStyles((theme) => ({
+const MenuWithStyles = withStyles((theme) => ({
+    root: {
+        pointerEvents: 'none',
+    },
+    paper: {
+        marginTop: 60,
+        minWidth: 240
+    }
+}))(Menu);
+
+const MenuListRC = withStyles((theme) => ({
     // pointer event css property solution for hover menus: https://stackoverflow.com/questions/54705254/how-to-keep-showing-the-popover-on-hovering-on-the-anchorel-and-popover-as-w
     root: {
         pointerEvents: 'auto',
     },
 }))(MenuList)
+
+const MenuItemRC = withStyles((theme) => ({
+    root: {
+        // height: 48
+        padding: 0
+    },
+    gutters: {
+        paddingRight: 0,
+        paddingLeft: 16,
+    }
+}))(MenuItem);
+
+const LinkRC = withStyles((theme) => ({
+    root: {
+        display: 'block',
+        flexGrow: 1,
+        paddingTop: 8,
+        paddingBottom: 8,
+        color: theme.palette.text.primary,
+    },
+}))(Link);
 
 const useStyles = makeStyles((theme) => ({
     logo: {
@@ -156,6 +170,13 @@ const RCMenu = ({ componentProps }: RCCompProps) => {
         setAnchorEl(null);
     };
 
+    const handleMenuItemAddClick = (route: string) => {
+        // do stuff
+        console.log(route);
+        // then close
+        setAnchorEl(null);
+    }
+
     const handleMenuClose = (event: any) => {
         console.log("menu close triggered");
         setAnchorEl(null);
@@ -170,7 +191,7 @@ const RCMenu = ({ componentProps }: RCCompProps) => {
                     </ButtonBase>
                 </Box>
                 <Box flexGrow={1}>
-                    <TabsWithStyles
+                    <TabsRC
                         value={tabIndex}
                         onChange={handleTabsChange}
                         variant="fullWidth"
@@ -181,12 +202,12 @@ const RCMenu = ({ componentProps }: RCCompProps) => {
                     >
                         {menuData.map(
                             tabItem => tabItem.tabMenuItems ?
-                                <TabWithStyles icon={tabItem.icon} label={tabItem.name} onMouseEnter={(event) => handleMenuOpen(tabItem.id, event)} key={tabItem.id} />
+                                <TabRC icon={tabItem.icon} label={tabItem.name} onMouseEnter={(event) => handleMenuOpen(tabItem.id, event)} key={tabItem.id} />
                                 :
-                                <TabWithStyles icon={tabItem.icon} label={tabItem.name} key={tabItem.id} />
+                                <TabRC icon={tabItem.icon} label={tabItem.name} key={tabItem.id} />
                         )}
-                    </TabsWithStyles>
-                    <PopoverWithStyles
+                    </TabsRC>
+                    <PopoverRC
                         id="mouse-over-popover"
                         open={Boolean(anchorEl)}
                         anchorEl={anchorEl}
@@ -196,25 +217,25 @@ const RCMenu = ({ componentProps }: RCCompProps) => {
                         PaperProps={{ onMouseLeave: handleMenuClose }}
                         disableRestoreFocus
                     >
-                        <MenuListWithStyles>
+                        <MenuListRC>
                             {
                                 menuItems.map(
                                     menuItem => menuItem.isHeading ?
                                         <ListSubheader id="nested-list-subheader">{menuItem.name}</ListSubheader>
                                         :
-                                        <MenuItemWithStyles button key={menuItem.id}>
-                                            <Box flexGrow={1}><Button onClick={() => handleMenuItemClick("http://google.com")}>{menuItem.name}</Button></Box>
+                                        <MenuItemRC key={menuItem.id}>
+                                            <LinkRC onClick={() => handleMenuItemClick("http://google.com")} underline="none">{menuItem.name}</LinkRC>
                                             {Boolean(menuItem.addItemRoute) ?
-                                                <IconButton color="primary"><AddCircle fontSize="small" /></IconButton>
+                                                <IconButton color="primary" onClick={() => handleMenuItemAddClick("added item")}><AddCircle fontSize="small" /></IconButton>
                                                 : <></>}
-                                        </MenuItemWithStyles>
+                                        </MenuItemRC>
                                 )
                             }
-                        </MenuListWithStyles>
-                    </PopoverWithStyles>
+                        </MenuListRC>
+                    </PopoverRC>
                 </Box>
                 <Box>
-                    <TabWithStyles icon={<Exit />} label="Logout" />
+                    <TabRC icon={<Exit />} label="Logout" />
                 </Box>
             </Box>
         </Paper>
