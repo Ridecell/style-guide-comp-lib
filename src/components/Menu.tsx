@@ -22,10 +22,11 @@ import Logo from '../images/logo.png';
 // icons
 import Exit from '@material-ui/icons/ExitToApp';
 import AddCircle from '@material-ui/icons/AddCircle';
+import '../styles/icons.css';
+
 // data
-import MenuItemsData from '../data/menu';
-import { IconButton } from '@material-ui/core';
-import zIndex from '@material-ui/core/styles/zIndex';
+import MenuItemsData from '../data/menu-test';
+import { Icon, IconButton } from '@material-ui/core';
 
 const TabsRC = withStyles((theme) => ({
     root: {
@@ -214,9 +215,9 @@ const RCMenu = ({ componentProps }: RCCompProps) => {
                     >
                         {menuData.map(
                             tabItem => tabItem.tabMenuItems ?
-                                <TabRC icon={tabItem.icon} label={tabItem.name} onMouseEnter={(event) => handleMenuOpen(tabItem.id, event)} key={tabItem.id} />
+                                <TabRC icon={<Icon>{tabItem.icon}</Icon>} label={tabItem.name} onMouseEnter={(event) => handleMenuOpen(tabItem.id, event)} key={tabItem.id} />
                                 :
-                                <TabRC icon={tabItem.icon} label={tabItem.name} key={tabItem.id} />
+                                <TabRC icon={<Icon>{tabItem.icon}</Icon>} label={tabItem.name} key={tabItem.id} />
                         )}
                     </TabsRC>
                     <PopoverRC
