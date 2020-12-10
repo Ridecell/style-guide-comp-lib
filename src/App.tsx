@@ -8,6 +8,7 @@ import TextField from './components/TextField'
 import Label from './components/Label'
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
+import PoppoverTest from './components/PopoverTest';
 
 const theme = createMuiTheme({
   palette: {
@@ -32,14 +33,9 @@ function App() {
     { key: 3, label: 'Hard break' },
   ]);
 
-  const navItems = [
-    {
-      itemName: 'Dashboard',
-      items: [
-
-      ]
-    }
-  ]
+  const handleMenuClose = (event: any) => {
+    console.log("word");
+  };
 
   return (
     <div className="App">
