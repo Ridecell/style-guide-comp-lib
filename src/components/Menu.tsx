@@ -70,19 +70,19 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-interface RCCompProps {
+export interface RCCompProps {
     // text: string,
     componentProps?: Object
 }
 
-interface MenuItem {
+export interface MenuItem {
     isHeading: boolean,
     id: string,
     name: string,
     route?: string
 }
 
-interface TabItem {
+export interface TabItem {
     id: string,
     name: string,
     icon: any,

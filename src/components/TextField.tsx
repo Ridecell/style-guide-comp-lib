@@ -27,7 +27,7 @@ const TextFieldWithStyles = withStyles({
     root: {
         '& label': {
             fontSize: '1.2rem'
-          },
+        },
     },
     input: {
         fontSize: '10rem',
@@ -35,7 +35,7 @@ const TextFieldWithStyles = withStyles({
     },
 })(TextField);
 
-interface RCButtonProps {
+export interface RCButtonProps {
     type: string,
     helpText?: string
 }
