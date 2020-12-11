@@ -236,9 +236,9 @@ const RCMenu = ({ componentProps }: RCCompProps) => {
                                         <ListSubheaderRC id="nested-list-subheader">{menuItem.name}</ListSubheaderRC>
                                         :
                                         <MenuItemRC key={menuItem.id}>
-                                            <LinkRC onClick={() => handleMenuItemClick("http://google.com")} underline="none">{menuItem.name}</LinkRC>
+                                            <LinkRC href={menuItem.route} underline="none">{menuItem.name}</LinkRC>
                                             {Boolean(menuItem.addItemRoute) ?
-                                                <IconButton color="primary" aria-label="add new" onClick={() => handleMenuItemAddClick("added item")}><AddCircle fontSize="small" /></IconButton>
+                                                <Link href={menuItem.addItemRoute}><IconButton color="primary" aria-label="add new"><AddCircle fontSize="small" /></IconButton></Link>
                                                 : <></>}
                                         </MenuItemRC>
                                 )
