@@ -1,5 +1,5 @@
 {
-  "name": "style-guide-comp-lib",
+  "name": "@ridecell/style-guide-comp-lib",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
