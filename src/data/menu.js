@@ -28,6 +28,7 @@ const menuItemsData = [
             },
             {
                 isHeading: false,
+                isDisabled: true,
                 id: "activejobs",
                 name: "Active Jobs",
                 route: "https://material-ui.com/components/material-icons/",
@@ -35,6 +36,7 @@ const menuItemsData = [
             },
             {
                 isHeading: false,
+                isDisabled: true,
                 id: "pastjobs",
                 name: "Past Jobs",
                 route: ""

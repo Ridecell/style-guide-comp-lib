@@ -9,6 +9,8 @@ import Label from './components/Label'
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import PoppoverTest from './components/PopoverTest';
+// data
+import MenuItemsData from './data/menu';
 
 const theme = createMuiTheme({
   palette: {
@@ -40,7 +42,10 @@ function App() {
   return (
     <div className="App">
       <ThemeProvider theme={theme}>
-        <Menu />
+        <Menu
+          selectedTabIndex={2}
+          menuItemsData={MenuItemsData}
+        />
         <Container maxWidth={false}>
           <h1>Components Preview</h1>
           <Grid container direction="row" justify="flex-start" alignItems="flex-start">

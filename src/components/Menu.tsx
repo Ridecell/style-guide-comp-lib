@@ -17,15 +17,12 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItem from '@material-ui/core/ListItem';
 import ListItemText from '@material-ui/core/ListItemText';
 import Popover from '@material-ui/core/Popover';
-import ClickAwayListener from '@material-ui/core/ClickAwayListener';
 import Logo from '../images/logo.png';
 // icons
 import Exit from '@material-ui/icons/ExitToApp';
 import AddCircle from '@material-ui/icons/AddCircle';
 // data
-import MenuItemsData from '../data/menu';
-import { IconButton } from '@material-ui/core';
-import zIndex from '@material-ui/core/styles/zIndex';
+import { Icon, IconButton } from '@material-ui/core';
 
 const TabsRC = withStyles((theme) => ({
     root: {
@@ -103,7 +100,8 @@ const ListSubheaderRC = withStyles((theme) => ({
 const MenuItemRC = withStyles((theme) => ({
     root: {
         // height: 48
-        padding: 0
+        padding: 0,
+        color: theme.palette.text.disabled
     },
     gutters: {
         paddingRight: 0,
@@ -118,6 +116,17 @@ const LinkRC = withStyles((theme) => ({
         paddingTop: 8,
         paddingBottom: 8,
         color: theme.palette.text.primary,
+    },
+}))(Link);
+
+const IconLinkRC = withStyles((theme) => ({
+    root: {
+        display: 'inline-block',
+        paddingRight: 16,
+        paddingTop: 8,
+        paddingBottom: 8,
+        lineHeight: 1,
+        color: theme.palette.primary.main,
     },
 }))(Link);
 
@@ -136,12 +145,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 interface RCCompProps {
-    // text: string,
+    selectedTabIndex: Number,
+    menuItemsData: Array<TabItem>,
     componentProps?: Object
 }
 
 interface MenuItem {
     isHeading: boolean,
+    isDisabled?: boolean,
     id: string,
     name: string,
     route?: string,
@@ -155,14 +166,14 @@ interface TabItem {
     tabMenuItems?: Array<MenuItem>
 }
 
-const RCMenu = ({ componentProps }: RCCompProps) => {
+const RCMenu = ({ selectedTabIndex, menuItemsData, componentProps }: RCCompProps) => {
     const classes = useStyles();
 
-    const menuData: Array<TabItem> = MenuItemsData;
+    const menuData: Array<TabItem> = menuItemsData;
 
     const [tabIndex, setTabsIndex] = React.useState(0);
     const handleTabsChange = (event: any, newIndex: number) => {
-        setTabsIndex(newIndex);
+        // setTabsIndex(newIndex);
     };
 
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -204,7 +215,7 @@ const RCMenu = ({ componentProps }: RCCompProps) => {
                 </Box>
                 <Box flexGrow={1}>
                     <TabsRC
-                        value={tabIndex}
+                        value={selectedTabIndex}
                         onChange={handleTabsChange}
                         variant="fullWidth"
                         indicatorColor="primary"
@@ -236,9 +247,12 @@ const RCMenu = ({ componentProps }: RCCompProps) => {
                                         <ListSubheaderRC id="nested-list-subheader">{menuItem.name}</ListSubheaderRC>
                                         :
                                         <MenuItemRC key={menuItem.id}>
-                                            <LinkRC href={menuItem.route} underline="none">{menuItem.name}</LinkRC>
-                                            {Boolean(menuItem.addItemRoute) ?
-                                                <Link href={menuItem.addItemRoute}><IconButton color="primary" aria-label="add new"><AddCircle fontSize="small" /></IconButton></Link>
+                                            {Boolean(menuItem.isDisabled) ?
+                                                <span>{menuItem.name}</span>
+                                                :
+                                                <LinkRC href={menuItem.route} underline="none">{menuItem.name}</LinkRC>}
+                                            {Boolean(menuItem.addItemRoute) && Boolean(!menuItem.isDisabled) ?
+                                                <IconLinkRC href={menuItem.addItemRoute}><AddCircle fontSize="small" /></IconLinkRC>
                                                 : <></>}
                                         </MenuItemRC>
                                 )
