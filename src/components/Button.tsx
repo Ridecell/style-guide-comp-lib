@@ -9,7 +9,7 @@ const ButtonWithStyles = withStyles({
     },
   })(Button);
 
-interface RCButtonProps {
+export interface RCButtonProps {
     type: string,
     children: string,
     componentProps?: Object

@@ -153,13 +153,13 @@ const useStyles = makeStyles((theme) => ({
     },
 }));
 
-interface RCCompProps {
+export interface RCCompProps {
     selectedTabIndex: Number,
     menuItemsData: Array<TabItem>,
     componentProps?: Object
 }
 
-interface MenuItem {
+export interface MenuItem {
     isHeading: boolean,
     isDisabled?: boolean,
     id: string,
@@ -168,7 +168,7 @@ interface MenuItem {
     addItemRoute?: string
 }
 
-interface TabItem {
+export interface TabItem {
     id: string,
     name: string,
     icon: any,

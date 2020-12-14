@@ -15,7 +15,7 @@ const handleDelete = () => {
     console.info('You clicked the delete icon.');
 };
 
-interface RCCompProps {
+export interface RCCompProps {
     text: string,
     componentProps?: Object
 }
