@@ -101,13 +101,21 @@ const MenuItemRC = withStyles((theme) => ({
     root: {
         // height: 48
         padding: 0,
-        color: theme.palette.text.disabled
     },
     gutters: {
         paddingRight: 0,
         paddingLeft: 16,
     }
 }))(MenuItem);
+
+const MenuItemDisabled = withStyles((theme) => ({
+    root: {
+        // color: theme.palette.text.disabled,
+        // flexGrow: 1,
+        paddingTop: 8,
+        paddingBottom: 8,
+    },
+}))(Typography);
 
 const LinkRC = withStyles((theme) => ({
     root: {
@@ -118,6 +126,7 @@ const LinkRC = withStyles((theme) => ({
         color: theme.palette.text.primary,
     },
 }))(Link);
+
 
 const IconLinkRC = withStyles((theme) => ({
     root: {
@@ -246,11 +255,12 @@ const RCMenu = ({ selectedTabIndex, menuItemsData, componentProps }: RCCompProps
                                     menuItem => menuItem.isHeading ?
                                         <ListSubheaderRC id="nested-list-subheader">{menuItem.name}</ListSubheaderRC>
                                         :
-                                        <MenuItemRC key={menuItem.id}>
+                                        <MenuItemRC key={menuItem.id} disabled={menuItem.isDisabled}>
                                             {Boolean(menuItem.isDisabled) ?
-                                                <span>{menuItem.name}</span>
+                                                <MenuItemDisabled variant="body1">{menuItem.name}</MenuItemDisabled>
                                                 :
                                                 <LinkRC href={menuItem.route} underline="none">{menuItem.name}</LinkRC>}
+                                            {/* <LinkRC href={menuItem.route} underline="none">{menuItem.name}</LinkRC> */}
                                             {Boolean(menuItem.addItemRoute) && Boolean(!menuItem.isDisabled) ?
                                                 <IconLinkRC href={menuItem.addItemRoute}><AddCircle fontSize="small" /></IconLinkRC>
                                                 : <></>}
