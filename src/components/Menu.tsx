@@ -260,7 +260,6 @@ const RCMenu = ({ selectedTabIndex, menuItemsData, componentProps }: RCCompProps
                                                 <MenuItemDisabled variant="body1">{menuItem.name}</MenuItemDisabled>
                                                 :
                                                 <LinkRC href={menuItem.route} underline="none">{menuItem.name}</LinkRC>}
-                                            {/* <LinkRC href={menuItem.route} underline="none">{menuItem.name}</LinkRC> */}
                                             {Boolean(menuItem.addItemRoute) && Boolean(!menuItem.isDisabled) ?
                                                 <IconLinkRC href={menuItem.addItemRoute}><AddCircle fontSize="small" /></IconLinkRC>
                                                 : <></>}
