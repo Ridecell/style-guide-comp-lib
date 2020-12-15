@@ -1,18 +1,9 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 import Button from './components/Button'
 import Label from './components/Label'
-
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+import Menu from './components/Menu'
+import TextField from './components/TextField'
 
 // If you want to start measuring performance in your app, pass a function
 // to log results (for example: reportWebVitals(console.log))
@@ -22,5 +13,7 @@ reportWebVitals();
 
 export {
   Button,
-  Label
+  Label,
+  Menu,
+  TextField
 }
