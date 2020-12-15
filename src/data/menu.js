@@ -25,17 +25,18 @@ const menuItemsData = [
                 isHeading: true,
                 id: "jobs",
                 name: "Jobs",
-                route: "",
             },
             {
                 isHeading: false,
+                isDisabled: true,
                 id: "activejobs",
                 name: "Active Jobs",
-                route: "",
-                addItemRoute: "route here"
+                route: "https://material-ui.com/components/material-icons/",
+                addItemRoute: "https://material-ui.com/components/tabs/#tabs"
             },
             {
                 isHeading: false,
+                isDisabled: true,
                 id: "pastjobs",
                 name: "Past Jobs",
                 route: ""

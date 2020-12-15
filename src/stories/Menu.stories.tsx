@@ -3,13 +3,14 @@ import React from 'react';
 import { Story, Meta } from '@storybook/react/types-6-0';
 
 import RCMenu from '../components/Menu'
+import { RCCompProps } from '../components/Menu'
 
 export default {
   title: 'Example/Menu',
   component: RCMenu,
 } as Meta;
 
-const Template: Story = (args) => <RCMenu {...args} />;
+const Template: Story<RCCompProps> = (args) => <RCMenu {...args} />;
 
 export const MainMenu = Template.bind({});
 MainMenu.args = {};
