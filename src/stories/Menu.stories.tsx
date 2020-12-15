@@ -4,6 +4,7 @@ import { Story, Meta } from '@storybook/react/types-6-0';
 
 import RCMenu from '../components/Menu'
 import { RCCompProps } from '../components/Menu'
+import menuItemsData from '../data/menu'
 
 export default {
   title: 'Example/Menu',
@@ -13,4 +14,6 @@ export default {
 const Template: Story<RCCompProps> = (args) => <RCMenu {...args} />;
 
 export const MainMenu = Template.bind({});
-MainMenu.args = {};
+MainMenu.args = {
+  menuItemsData: menuItemsData
+};
