@@ -6,9 +6,6 @@ import RCMenu from '../components/Menu'
 import { RCCompProps } from '../components/Menu'
 import menuItemsData from '../data/menu'
 
-import Dashboard from '@material-ui/icons/Dashboard';
-import DataUsage from '@material-ui/icons/DataUsage';
-
 export default {
   title: 'Example/Menu',
   component: RCMenu,
