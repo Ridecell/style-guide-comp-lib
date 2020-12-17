@@ -1,7 +1,11 @@
 {
-  "name": "style-guide-comp-lib",
-  "version": "0.1.0",
-  "private": true,
+  "name": "@ridecell/web-components-lib",
+  "version": "0.1.1",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
+  "license": "UNLICENSED",
   "dependencies": {
     "@material-ui/core": "^4.11.0",
     "@material-ui/icons": "^4.9.1",
@@ -12,17 +16,19 @@
     "@types/node": "^12.0.0",
     "@types/react": "^16.9.53",
     "@types/react-dom": "^16.9.8",
+    "babel-loader": "^8.2.2",
+    "file-loader": "^6.2.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.0",
+    "ts-loader": "^8.0.12",
     "typescript": "^4.0.3",
     "web-vitals": "^0.2.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject",
+    "start": "NODE_ENV=development npm run watch",
+    "watch": "webpack --entry=./src/index.tsx --output-filename=index.js --watch",
+    "build": "NODE_ENV=production webpack --entry=./src/index.tsx --output-filename=index.js",
     "storybook": "start-storybook -p 6006 -s public",
     "build-storybook": "build-storybook -s public"
   },
@@ -50,6 +56,8 @@
     "@storybook/addon-links": "^6.1.10",
     "@storybook/node-logger": "^6.1.10",
     "@storybook/preset-create-react-app": "^3.1.5",
-    "@storybook/react": "^6.1.10"
+    "@storybook/react": "^6.1.10",
+    "webpack": "^5.10.1",
+    "webpack-cli": "^4.2.0"
   }
 }
