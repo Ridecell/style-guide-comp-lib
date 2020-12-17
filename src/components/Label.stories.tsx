@@ -6,7 +6,7 @@ import RCLabel from './Label'
 import { RCCompProps } from './Label'
 
 export default {
-  title: 'Example/Label',
+  title: 'Label',
   component: RCLabel,
 } as Meta;
 

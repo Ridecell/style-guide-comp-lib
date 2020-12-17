@@ -1,3 +1,8 @@
+/**
+ - Use as your primary method for navigation
+ - Something more here
+ **/
+
 import React from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 import Paper from '@material-ui/core/Paper';

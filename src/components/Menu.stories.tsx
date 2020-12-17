@@ -9,8 +9,11 @@ import Dashboard from '@material-ui/icons/Dashboard';
 import DataUsage from '@material-ui/icons/DataUsage';
 
 export default {
-  title: 'Example/Menu',
+  title: 'Menu',
   component: RCMenu,
+  parameters: {
+    componentSubtitle: 'Application menu is used as the top most app navigation',
+  }
 } as Meta;
 
 const Template: Story<RCCompProps> = (args) => <RCMenu {...args} />;

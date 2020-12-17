@@ -6,7 +6,7 @@ import RCButton from './Button'
 import { RCButtonProps } from './Button'
 
 export default {
-  title: 'Example/RCButton',
+  title: 'RCButton',
   component: RCButton,
 } as Meta;
 

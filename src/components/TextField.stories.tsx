@@ -6,7 +6,7 @@ import RCTextField from './TextField'
 import { RCButtonProps } from './TextField'
 
 export default {
-  title: 'Example/Text Field',
+  title: 'Text Field',
   component: RCTextField,
 } as Meta;
 
