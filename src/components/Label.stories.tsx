@@ -12,7 +12,20 @@ export default {
 
 const Template: Story<RCCompProps> = (args) => <RCLabel {...args} />;
 
-export const Search = Template.bind({});
-Search.args = {
-  text: 'Search'
+export const Warning = Template.bind({});
+Warning.args = {
+  text: 'Warning',
+  style: 'warning'
+};
+
+export const Success = Template.bind({});
+Success.args = {
+  text: 'Success',
+  style: 'success'
+};
+
+export const Info = Template.bind({});
+Info.args = {
+  text: 'Informative',
+  style: 'info'
 };
