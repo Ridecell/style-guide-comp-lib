@@ -1,5 +1,8 @@
 
 module.exports = {
+  reactOptions: {
+    fastRefresh: true,
+  },
   "stories": [
     "../src/components/Intro.stories.mdx",
     "../src/**/*.stories.mdx",

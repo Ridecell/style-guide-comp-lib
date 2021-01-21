@@ -29,3 +29,8 @@ Info.args = {
   text: 'Informative',
   style: 'info'
 };
+
+export const Default = Template.bind({});
+Default.args = {
+  text: 'Default'
+};
